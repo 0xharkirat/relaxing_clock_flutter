@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:relaxing_clock_flutter/src/views/screens/home_screen.dart';
 import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -16,6 +17,9 @@ class MyApp extends StatelessWidget {
       title: 'Relaxing Clock',
       theme: ShadThemeData(
         colorScheme: ShadNeutralColorScheme.dark(),
+        textTheme: ShadTextTheme.fromGoogleFont(
+          GoogleFonts.novaMono
+        ),
         brightness: Brightness.dark,
       ),
 

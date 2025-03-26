@@ -2,11 +2,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
 
-final clockController = NotifierProvider<ClockController, DateTime>(() {
-  return ClockController();
-});
+final clockController = NotifierProvider.autoDispose<ClockController, DateTime>(
+  () {
+    return ClockController();
+  },
+);
 
-class ClockController extends Notifier<DateTime> {
+class ClockController extends AutoDisposeNotifier<DateTime> {
   Timer? _timer;
 
   @override
@@ -18,7 +20,6 @@ class ClockController extends Notifier<DateTime> {
     });
     return DateTime.now();
   }
-
 }
 
 // create extension on DateTime to format the time and date
@@ -30,4 +31,9 @@ extension DateTimeExtension on DateTime {
   String get formattedDate {
     return DateFormat('EEEE, MMMM d').format(this);
   }
+
+  // create three getters to get the hour, minute, and second
+  String get hourString => hour.toString().padLeft(2, '0');
+  String get minuteString => minute.toString().padLeft(2, '0');
+  String get secondString => second.toString().padLeft(2, '0');
 }
